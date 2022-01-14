@@ -6,14 +6,8 @@
     "@testing-library/jest-dom": "5.11.4",
     "@testing-library/react": "11.1.0",
     "@testing-library/user-event": "12.1.10",
-    "eslint": "7.23.0",
-    "lodash": "4.17.21",
-    "lodash-es": "4.17.21",
-    "prop-types": "15.7.2",
-    "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-scripts": "4.0.3",
-    "styled-components": "5.2.1"
+    "react-scripts": "4.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,7 +35,15 @@
   "devDependencies": {
     "@m6web/eslint-plugin-react": "3.4.0",
     "eslint-plugin-prettier": "3.1.4",
+    "eslint": "7.23.0",
+    "johnny-five": "2.1.0",
+    "lodash": "4.17.21",
     "prettier": "2.2.1",
-    "prettier-eslint-cli": "5.0.1"
+    "prettier-eslint-cli": "5.0.1",
+    "prop-types": "15.7.2",
+    "react": "17.0.2",
+    "react-redux": "7.2.6",
+    "redux": "4.1.1",
+    "styled-components": "5.2.1"
   }
 }
