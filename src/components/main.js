@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { desktopQuery } from '../mixins/reponsive';
 
-const BodyBlock = styled.div`
+const MainBlock = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,10 +19,10 @@ const BodyBlock = styled.div`
   }
 `;
 
-export const Body = () => {
+export const Main = () => {
   return (
-    <BodyBlock>
+    <MainBlock>
       <h1>Welcome to Tea-Diver</h1>
-    </BodyBlock>
+    </MainBlock>
   );
 };

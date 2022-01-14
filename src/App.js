@@ -1,13 +1,13 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Theme } from './theme';
-import { Body } from './components/body';
+import { Main } from './components/main';
 
 function App() {
   return (
     <div className="App">
       <ThemeProvider theme={Theme}>
-        <Body />
+        <Main />
       </ThemeProvider>
     </div>
   );
