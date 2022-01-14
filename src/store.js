@@ -1,10 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { name, reducer } from './slice';
+import { createStore } from 'redux';
+import reducer from './components/reducer/reducer';
 
-const store = configureStore({
-  reducer: {
-    [name]: reducer,
-  },
-});
-
-export default store;
+export const store = createStore(reducer);
