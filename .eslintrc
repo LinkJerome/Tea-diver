@@ -1,0 +1,15 @@
+{
+  "extends": "plugin:@m6web/eslint-plugin-react/default",
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "jest": true
+  },
+  "rules": {
+    "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off",
+    "react/jsx-fragments": "off",
+    "react/forbid-prop-types": 0,
+    "import/no-named-as-default": "off"
+  }
+}
