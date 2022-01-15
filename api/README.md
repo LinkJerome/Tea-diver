@@ -65,6 +65,9 @@ To run this project locally, clone repo and add an `.env` file in the root (don'
 MONGODB_URI='mongodb+srv://username:password@cluster0.eetsx.mongodb.net/database_name'
 MONGO_ROOT_USER=root_user
 MONGO_ROOT_PASSWORD=your_password
+MONGO_EXPRESS_LOGIN=login
+MONGO_EXPRESS_PASSWORD=password
+MONGO_DATABASE=database_name
 API_USER=api_user
 API_PASSWORD=api_password
 ```
