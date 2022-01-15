@@ -2,11 +2,5 @@
   "singleQuote": true,
   "printWidth": 120,
   "trailingComma": "all",
-  "endOfLine": "auto",
-  "prettier/prettier": [
-    "error",
-    {
-      "endOfLine": "auto"
-    }
-  ]
+  "endOfLine": "auto"
 }

@@ -1,10 +1,12 @@
 {
-  "extends": "plugin:@m6web/eslint-plugin-react/default",
+  "extends": ["eslint:recommended", "standard", "plugin:react/recommended", "prettier"],
   "parser": "babel-eslint",
   "env": {
     "browser": true,
     "commonjs": true,
-    "es2021": true
+    "es2021": true,
+    "node": true,
+    "jquery": true
   },
   "rules": {
     "no-use-before-define": "off",
@@ -15,12 +17,29 @@
     "import/no-named-as-default": "off",
     "jsx-a11y/label-has-associated-control": "off"
   },
+  "overrides": [
+    {
+      "files": ["**/*.spec.js", "**/*.spec.jsx"],
+      "env": {
+        "jest": true,
+        "jest/globals": true
+      }
+    },
+    {
+      "files": ["api/**/*.js"],
+      "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true,
+        "node": true,
+        "jquery": true
+      }
+    }
+  ],
   "settings": {
     "react": {
       "version": "detect"
     }
   },
-  "plugins": [
-    "react"
-  ]
+  "plugins": ["react", "jest"]
 }
