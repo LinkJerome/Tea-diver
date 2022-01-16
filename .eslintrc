@@ -19,13 +19,6 @@
   },
   "overrides": [
     {
-      "files": ["**/*.spec.js", "**/*.spec.jsx"],
-      "env": {
-        "jest": true,
-        "jest/globals": true
-      }
-    },
-    {
       "files": ["api/**/*.js"],
       "env": {
         "browser": true,

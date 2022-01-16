@@ -1,4 +1,25 @@
-const { five } = require('johnny-five');
+// const { five } = require('johnny-five');
+const SerialPort = require('serialport');
+
+const parsers = SerialPort.parsers;
+const parser = new parsers.Readline({
+  delimiter: '\r\n',
+});
+
+// COM4 a remplacer par le path du port serial utiliser
+const port = new SerialPort('COM4', {
+  baudRate: 9600,
+  dataBits: 8,
+  parity: 'none',
+  stopBits: 1,
+  flowControl: false,
+});
+
+port.pipe(parser);
+
+parser.on('data', (data) => {
+  console.log({ data });
+});
 
 const express = require('express');
 const path = require('path');
@@ -30,13 +51,4 @@ io.on('connection', (socket) => {
 server.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`App listening on port: ${PORT}`);
-});
-
-const board = new five.Board({
-  port: '/dev/ttyACM0',
-});
-
-board.on('ready', () => {
-  const led = new five.Led(13);
-  led.blink(500);
 });
