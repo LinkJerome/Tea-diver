@@ -34,7 +34,14 @@ const { Board, Led } = require('johnny-five');
 const Thermometer = require('johnny-five/lib/thermometer');
 const board = new Board();
 
+/*  si besoins de detecter un port spécifique
+const board = new Board({
+  port: "/dev/cu.usbmodem1411"
+});
+ */
+
 board.on('ready', () => {
+  console.log('Arduino Connected');
   // Test LED
   const led = new Led(13);
   led.blink(500);
@@ -44,12 +51,19 @@ board.on('ready', () => {
     pin: 2,
   });
 
-  thermometer.on('change', () => {
-    const { address, celsius, fahrenheit, kelvin } = thermometer;
-    console.log(`Thermometer at address: 0x${address.toString(16)}`);
-    console.log('  celsius      : ', celsius);
-    console.log('  fahrenheit   : ', fahrenheit);
-    console.log('  kelvin       : ', kelvin);
-    console.log('--------------------------------------');
+  board.loop(500, () => {
+    // Test Thermometre
+    thermometer.on('change', () => {
+      const { address, celsius, fahrenheit, kelvin } = thermometer;
+      console.log(`Thermometer at address: 0x${address.toString(16)}`);
+      console.log('  celsius      : ', celsius);
+      console.log('  fahrenheit   : ', fahrenheit);
+      console.log('  kelvin       : ', kelvin);
+      console.log('--------------------------------------');
+    });
+  });
+
+  board.on('exit', () => {
+    console.log('Disconnection of Arduino');
   });
 });
