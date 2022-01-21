@@ -31,13 +31,25 @@ server.listen(PORT, () => {
 });
 
 const { Board, Led } = require('johnny-five');
+const Thermometer = require('johnny-five/lib/thermometer');
 const board = new Board();
 
 board.on('ready', () => {
-  // Create a standard `led` component instance
+  // Test LED
   const led = new Led(13);
-
-  // "blink" the led in 500ms
-  // on-off phase periods
   led.blink(500);
+  // Test Thermometer - DS18B20
+  const thermometer = new Thermometer({
+    controller: 'DS18B20',
+    pin: 2,
+  });
+
+  thermometer.on('change', () => {
+    const { address, celsius, fahrenheit, kelvin } = thermometer;
+    console.log(`Thermometer at address: 0x${address.toString(16)}`);
+    console.log('  celsius      : ', celsius);
+    console.log('  fahrenheit   : ', fahrenheit);
+    console.log('  kelvin       : ', kelvin);
+    console.log('--------------------------------------');
+  });
 });
