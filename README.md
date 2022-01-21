@@ -12,7 +12,9 @@ Installation des dépendances :
 ```
 yarn install
 ```
+
 ou
+
 ```
 npm install
 ```
@@ -22,7 +24,19 @@ Build le projet :
 yarn dev
 ```
 
+ou
+
+```
+npm run dev
+```
+
 Lancement du serveur :
 ```
 yarn start
+```
+
+ou
+
+```
+npm run start
 ```
