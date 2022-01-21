@@ -1,4 +1,3 @@
-const SerialPort = require('serialport');
 const express = require('express');
 const path = require('path');
 const http = require('http');
@@ -31,22 +30,14 @@ server.listen(PORT, () => {
   console.log(`App listening on port: ${PORT}`);
 });
 
-const parsers = SerialPort.parsers;
-const parser = new parsers.Readline({
-  delimiter: '\r\n',
-});
+const { Board, Led } = require('johnny-five');
+const board = new Board();
 
-// COM4 a remplacer par le path du port serial utiliser
-const port = new SerialPort('\\\\.\\COM4', {
-  baudRate: 9600,
-  dataBits: 8,
-  parity: 'none',
-  stopBits: 1,
-  flowControl: false,
-});
+board.on('ready', () => {
+  // Create a standard `led` component instance
+  const led = new Led(13);
 
-port.pipe(parser);
-
-parser.on('data', (data) => {
-  console.log({ data });
+  // "blink" the led in 500ms
+  // on-off phase periods
+  led.blink(500);
 });
