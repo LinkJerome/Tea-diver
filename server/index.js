@@ -30,7 +30,7 @@ server.listen(PORT, () => {
   console.log(`App listening on port: ${PORT}`);
 });
 
-const { Board, Led } = require('johnny-five');
+const { Board, Led, Servo } = require('johnny-five');
 const Thermometer = require('johnny-five/lib/thermometer');
 const board = new Board();
 
@@ -62,6 +62,43 @@ board.on('ready', () => {
       console.log('--------------------------------------');
     });
   });
+
+  // Test Servo
+  const servo = new Servo(10);
+
+  // Servo API
+
+  // min()
+  //
+  // set the servo to the minimum degrees
+  // defaults to 0
+  //
+  // eg. servo.min();
+
+  // max()
+  //
+  // set the servo to the maximum degrees
+  // defaults to 180
+  //
+  // eg. servo.max();
+
+  // center()
+  //
+  // centers the servo to 90°
+  //
+  // servo.center();
+
+  // to( deg )
+  //
+  // Moves the servo to position by degrees
+  //
+  // servo.to( 90 );
+
+  // step( deg )
+  //
+  // step all servos by deg
+  //
+  // eg. array.step( -20 );
 
   board.on('exit', () => {
     console.log('Disconnection of Arduino');
