@@ -40,3 +40,14 @@ ou
 ```
 npm run start
 ```
+
+Lancement de l'écoute de L'arduino :
+```
+yarn arduino
+```
+
+ou
+
+```
+npm run arduino
+```
