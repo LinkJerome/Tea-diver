@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Row } from './row.styled';
 
-const RowBlock = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+const RowBlock = styled(Row)`
+  justify-content: normal;
   width: 300px;
 `;
 
@@ -21,7 +21,7 @@ const ValueBlock = styled(MidBlock)`
   overflow: auto;
 `;
 
-export const Row = ({ name, value }) => {
+export const RowValue = ({ name, value }) => {
   return (
     <RowBlock>
       <KeyBlock>{name} : </KeyBlock>
@@ -30,7 +30,7 @@ export const Row = ({ name, value }) => {
   );
 };
 
-Row.propTypes = {
+RowValue.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.any.isRequired,
 };

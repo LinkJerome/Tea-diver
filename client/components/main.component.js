@@ -1,7 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { desktopQuery } from '../mixins/reponsive';
-import { ApiData } from './apiData/apiData.component';
+import { ApiData } from './apiData.component';
+import { Thermometer } from './thermometer.component';
+import { Row } from './subComponent/row.styled';
 
 const MainBlock = styled.div`
   display: flex;
@@ -21,20 +23,13 @@ const MainBlock = styled.div`
   }
 `;
 
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-`;
-
 export const Main = () => {
   return (
     <MainBlock>
       <h1>Welcome to Tea-Diver</h1>
       <Row>
         <ApiData />
+        <Thermometer />
       </Row>
     </MainBlock>
   );

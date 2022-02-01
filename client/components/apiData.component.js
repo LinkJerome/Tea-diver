@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import _ from 'lodash';
 import { DataDisplayer } from './subComponent/dataDisplayer.component';
-import { Title2 } from '../title.styled';
-
-const ApiDataBlock = styled.div`
-  display: block;
-  justify-content: center;
-  align-items: center;
-
-  padding: 10px;
-  border-radius: 10px;
-  background-color: ${(props) => props.theme.QUATERNARY};
-`;
+import { Title2 } from './subComponent/title.styled';
+import { ContentBlock, ItemBlock } from './subComponent/itemBlock.styled';
 
 export const ApiData = () => {
   const [teaData, setTeaData] = useState({});
@@ -48,10 +38,10 @@ export const ApiData = () => {
   };
 
   return (
-    <ApiDataBlock>
+    <ItemBlock>
       <Title2>TEA DATA</Title2>
 
-      <>
+      <ContentBlock>
         <label htmlFor="tea">Choose a tea: </label>
         <select name="tea" id="tea" onChange={teaSelector}>
           <option value="null"> </option>;
@@ -68,7 +58,7 @@ export const ApiData = () => {
         <br />
 
         <DataDisplayer data={selectedTea} />
-      </>
-    </ApiDataBlock>
+      </ContentBlock>
+    </ItemBlock>
   );
 };
