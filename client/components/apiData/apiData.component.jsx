@@ -1,32 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import _ from 'lodash';
+import { DataDisplayer } from './subComponent/dataDisplayer.component';
+import { Title2 } from '../title.styled';
 
 const ApiDataBlock = styled.div`
   display: block;
   justify-content: center;
   align-items: center;
 
-  padding: 5px 10px;
-  border-radius: 4px;
+  padding: 10px;
+  border-radius: 10px;
   background-color: ${(props) => props.theme.QUATERNARY};
-`;
-
-const DataDisplayer = styled.div`
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 5px;
-  background-color: ${(props) => props.theme.QUINTERNARY};
-`;
-
-const MidBlock = styled.div`
-  width: 50%;
 `;
 
 export const ApiData = () => {
   const [teaData, setTeaData] = useState({});
-  const [selectedTea, setSelectedTea] = useState({});
+  const placeHorlder = {
+    Name: '',
+    'Brew Time': '',
+    Description: '',
+    Origin: '',
+    Temperature: '',
+  };
+  const [selectedTea, setSelectedTea] = useState(placeHorlder);
   const url = 'https://tea-api-vic-lo.herokuapp.com/tea';
 
   useEffect(() => {
@@ -48,33 +45,29 @@ export const ApiData = () => {
       Origin: currentTea.origin,
       Temperature: currentTea.temperature,
     });
-    console.log(teaData[value]);
   };
 
   return (
     <ApiDataBlock>
-      <h2>TEA DATA</h2>
+      <Title2>TEA DATA</Title2>
 
       <>
-        <label htmlFor="tea">Choose a tea:</label>
+        <label htmlFor="tea">Choose a tea: </label>
         <select name="tea" id="tea" onChange={teaSelector}>
           <option value="null"> </option>;
           {_.map(teaData, (tea, index) => {
             const { name } = tea;
-            return <option value={index}>{name}</option>;
+            return (
+              <option key={index} value={index}>
+                {name}
+              </option>
+            );
           })}
         </select>
 
         <br />
 
-        <DataDisplayer>
-          {_.map(selectedTea, (value, key) => (
-            <>
-              <MidBlock>{key} : </MidBlock>
-              <MidBlock>{value}</MidBlock>
-            </>
-          ))}
-        </DataDisplayer>
+        <DataDisplayer data={selectedTea} />
       </>
     </ApiDataBlock>
   );

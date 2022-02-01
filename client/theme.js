@@ -7,6 +7,10 @@ export const Theme = {
   TITRE1: '#FFFFFF',
   TITRE2: '#FBF7F7',
   FONT: '#F9F0F0',
+  displayBlock: {
+    keyBlockColor: '#d0520b',
+    valueBlockColor: '#0bd043',
+  },
 };
 
 /*

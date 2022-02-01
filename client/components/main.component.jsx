@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { desktopQuery } from '../mixins/reponsive';
-import { ApiData } from './apiData/apiData';
+import { ApiData } from './apiData/apiData.component';
 
 const MainBlock = styled.div`
   display: flex;
