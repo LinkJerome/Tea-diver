@@ -2,6 +2,8 @@ export const Theme = {
   PRIMARY: '#2F91D4',
   SECONDARY: '#232335',
   TERTIARY: '#181824',
+  QUATERNARY: '#434378',
+  QUINTERNARY: '#56569a',
   TITRE1: '#FFFFFF',
   TITRE2: '#FBF7F7',
   FONT: '#F9F0F0',
