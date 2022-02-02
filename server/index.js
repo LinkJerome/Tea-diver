@@ -15,7 +15,13 @@ const convertToBinary = (number) => {
 }
 
 const intChelouToCelsius = (number) => {
+  console.log(' base : ', number)
+  console.log(' convert : ', convertToBinary(number))
+  console.log(' div : ', convertToBinary(number)/10000 )
   const bin = Math.trunc(convertToBinary(number)/10000);
+  console.log(' bin : ', bin )
+  console.log(' final : ', parseInt(bin,2) )
+  
   return parseInt(bin,2);
 }
 
