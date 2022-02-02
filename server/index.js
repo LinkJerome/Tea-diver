@@ -68,9 +68,12 @@ io.on('connection', (socket) => {
   */
 
   socket.on('plouf', () => {
-    console.log('Alo !');
+    console.log('TODO Descendre le sachet de thé');
+    socket.on('shake', () => {
+      console.log('TODO shake your booty');
+    });
     socket.on('unplouf', () => {
-      console.log('Je suis tout mouillé, je sors');
+      console.log('TODO Remonter le sachet de thé');
     });
   });
 

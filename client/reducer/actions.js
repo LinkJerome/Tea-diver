@@ -24,3 +24,11 @@ export const updatePlouf = (isPloufed) => {
     payload: isPloufed,
   };
 };
+
+export const SHAKE_TEA = 'redux/Shake-Tea';
+
+export const shakeTea = () => {
+  return {
+    type: SHAKE_TEA,
+  };
+};
