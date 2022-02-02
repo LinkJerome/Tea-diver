@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { io } from 'socket.io-client';
 import { ContentBlock, ItemBlock } from './subComponent/itemBlock.styled';
 import { Title2 } from './subComponent/title.styled';
+import _ from 'lodash';
+
+const socket = io();
 
 const TemperatureBlock = styled.div`
   display: flex;
@@ -16,15 +20,16 @@ const TemperatureBlock = styled.div`
 export const Thermometer = () => {
   const [temperature, setTemperature] = useState(18);
 
-  useEffect(() => {
-    setTemperature(5);
-  }, [setTemperature]);
+  socket.on('thermos', (data) => {
+    console.log(data);
+    setTemperature(_.get(data, 'celsius', 0));
+  });
 
   return (
     <ItemBlock>
       <Title2>TEMPERATURE</Title2>
       <ContentBlock>
-        <TemperatureBlock>{temperature}°</TemperatureBlock>
+        <TemperatureBlock>{temperature}°C</TemperatureBlock>
       </ContentBlock>
     </ItemBlock>
   );
