@@ -21,7 +21,7 @@ export const Launcher = () => {
 
   return (
     <HalfItemBlock>
-      {!isPlouf && <LaunchButton disabled={brewTime !== 0} />}
+      {!isPlouf && <LaunchButton />}
       {isPlouf && <Timer nbSeconds={totalSeconds} />}
     </HalfItemBlock>
   );
