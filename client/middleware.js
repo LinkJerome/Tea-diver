@@ -6,7 +6,6 @@ import { store } from './store';
 const socket = io();
 
 socket.on('thermos', (data) => {
-  console.log('I received thermos')
   const celsius = _.get(data, 'celsius', 0);
   store.dispatch(updateTemperature(celsius));
 });

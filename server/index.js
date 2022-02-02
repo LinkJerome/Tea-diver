@@ -65,8 +65,7 @@ board.on('ready', () => {
   io.on('connection', (socket) => {
     console.log('Client Connected');
 
-    board.loop(1000, () => {
-      // Test Thermometre
+    board.loop(500, () => {
       socket.emit('thermos', { celsius: temp });
     });
 
