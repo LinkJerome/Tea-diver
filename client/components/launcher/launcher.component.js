@@ -11,8 +11,8 @@ export const Launcher = () => {
   const [totalSeconds, setTotalSeconds] = useState(brewTime * 60);
 
   useEffect(() => {
+    setTotalSeconds(brewTime * 60);
     if (isPlouf) {
-      setTotalSeconds(brewTime * 60);
       const interval = setInterval(() => {
         if (totalSeconds > 0) {
           setTotalSeconds((oldSeconds) => oldSeconds - 1);

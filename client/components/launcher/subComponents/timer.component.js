@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Title2 } from '../../subComponent/title.styled';
 import { ContentBlock } from '../../subComponent/itemBlock.styled';
 import { BigValueDisplay } from '../../subComponent/bidValueDisplay.styled';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { updatePlouf } from '../../../reducer/actions';
 
 export const Timer = ({ nbSeconds }) => {
-  const min = Math.trunc(nbSeconds / 60) || 0;
-  const sec = nbSeconds - min * 60 || 0;
+  const dispatch = useDispatch();
+  const min = Math.trunc(nbSeconds / 60);
+  const sec = nbSeconds - min * 60;
+
+  useEffect(() => {
+    if (nbSeconds === 0) {
+      dispatch(updatePlouf(false));
+    }
+  }, [nbSeconds]);
 
   return (
     <>

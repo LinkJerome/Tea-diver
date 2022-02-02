@@ -20,6 +20,10 @@ const BigButtonBlock = styled.button`
   color: white;
   font-size: x-large;
 
+  &:hover {
+    background-color: #004d00;
+  }
+
   &:disabled {
     background-color: #595858;
   }
@@ -34,10 +38,8 @@ export const LaunchButton = () => {
     dispatch(updatePlouf(true));
   };
 
-  const isDisabled = (brewTime === 0) & isGoodTemp;
-
   return (
-    <BigButtonBlock disabled={isDisabled} onClick={onClickPlouf}>
+    <BigButtonBlock disabled={!isGoodTemp || brewTime === 0} onClick={onClickPlouf}>
       LAUNCH
     </BigButtonBlock>
   );
