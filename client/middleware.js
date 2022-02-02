@@ -4,7 +4,6 @@ import { SHAKE_TEA, UPDATE_PLOUF } from './reducer/actions';
 const socket = io();
 
 export const middleware = () => (next) => (action) => {
-  console.log(action);
   switch (action.type) {
     case UPDATE_PLOUF:
       if (action.payload) {
