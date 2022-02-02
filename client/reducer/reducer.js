@@ -8,7 +8,7 @@ const initialState = {
     Origin: '',
     Temperature: 0,
   },
-  temperature: 0,
+  currentTemperature: 0,
   isPlouf: false,
 };
 
@@ -17,11 +17,11 @@ const reducer = (state = initialState, action) => {
     case UPDATE_TEA:
       return { ...state, selectedTea: action.payload };
     case UPDATE_TEMP:
-      return { ...state, temperature: action.payload };
+      return { ...state, currentTemperature: action.payload };
     case UPDATE_PLOUF:
       return { ...state, isPlouf: !state.isPlouf };
     default:
-      return { ...state };
+      return state;
   }
 };
 

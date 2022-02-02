@@ -7,6 +7,8 @@ export const Timer = (nbSeconds) => {
   const [minutes, setMinutes] = useState('0');
   const [seconds, setSeconds] = useState('0');
 
+  console.log({ nbSeconds });
+
   useEffect(() => {
     const min = Math.trunc(nbSeconds / 60);
     const sec = nbSeconds - min * 60;

@@ -20,6 +20,6 @@ export const UPDATE_PLOUF = 'redux/Update-Plouf';
 
 export const updatePlouf = () => {
   return {
-    type: UPDATE_TEMP,
+    type: UPDATE_PLOUF,
   };
 };
