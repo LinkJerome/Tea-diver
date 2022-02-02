@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import { io } from 'socket.io-client';
 import { ContentBlock, HalfItemBlock } from './subComponent/itemBlock.styled';
 import { Title2 } from './subComponent/title.styled';
 import { BigValueDisplay } from './subComponent/bidValueDisplay.styled';
+import { getTemperature } from '../reducer/selectors';
+import { updateTemperature } from '../reducer/actions';
 
 const socket = io();
 
 export const Thermometer = () => {
-  const [temperature, setTemperature] = useState(18);
+  const dispatch = useDispatch();
+  const temperature = useSelector(getTemperature);
 
   socket.on('thermos', (data) => {
-    console.log(data);
-    setTemperature(_.get(data, 'celsius', 0));
+    const celsius = _.get(data, 'celsius', 0);
+    dispatch(updateTemperature(celsius));
   });
 
   return (

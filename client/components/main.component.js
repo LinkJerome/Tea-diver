@@ -4,7 +4,7 @@ import { desktopQuery } from '../mixins/reponsive';
 import { ApiData } from './apiData.component';
 import { Thermometer } from './thermometer.component';
 import { Row } from './subComponent/row.styled';
-import { Launcher } from './launcher.component';
+import { Launcher } from './launcher/launcher.component';
 
 const MainBlock = styled.div`
   display: flex;

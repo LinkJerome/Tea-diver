@@ -3,17 +3,15 @@ import _ from 'lodash';
 import { DataDisplayer } from './subComponent/dataDisplayer.component';
 import { Title2 } from './subComponent/title.styled';
 import { ContentBlock, ItemBlock } from './subComponent/itemBlock.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateTea } from '../reducer/actions';
+import { getSelectedTea } from '../reducer/selectors';
 
 export const ApiData = () => {
+  const dispatch = useDispatch();
+  const selectedTea = useSelector(getSelectedTea);
+
   const [teaData, setTeaData] = useState({});
-  const placeHorlder = {
-    Name: '',
-    'Brew Time': '',
-    Description: '',
-    Origin: '',
-    Temperature: '',
-  };
-  const [selectedTea, setSelectedTea] = useState(placeHorlder);
   const url = 'https://tea-api-vic-lo.herokuapp.com/tea';
 
   useEffect(() => {
@@ -28,13 +26,14 @@ export const ApiData = () => {
   const teaSelector = (event) => {
     const { value } = event.target;
     const currentTea = teaData[value];
-    setSelectedTea({
+    const selectTea = {
       Name: currentTea.name,
       'Brew Time': currentTea.brew_time,
       Description: currentTea.description,
       Origin: currentTea.origin,
       Temperature: currentTea.temperature,
-    });
+    };
+    dispatch(updateTea(selectTea));
   };
 
   return (

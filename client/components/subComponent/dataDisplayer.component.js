@@ -11,8 +11,6 @@ const DataDisplayerBlock = styled.div`
 `;
 
 export const DataDisplayer = ({ data }) => {
-  console.log(data);
-
   return (
     <DataDisplayerBlock>
       {_.map(data, (value, key) => (
