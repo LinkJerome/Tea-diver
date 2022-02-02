@@ -67,6 +67,13 @@ io.on('connection', (socket) => {
 
   */
 
+  socket.on('plouf', () => {
+    console.log('Alo !');
+    socket.on('unplouf', () => {
+      console.log('Je suis tout mouillé, je sors');
+    });
+  });
+
   socket.emit('thermos', {
     // Temp rand values
     celsius: _.random(70, 100),
@@ -81,6 +88,5 @@ io.on('connection', (socket) => {
 });
 
 server.listen(PORT, () => {
-  // eslint-disable-next-line no-console
   console.log(`App listening on port: ${PORT}`);
 });

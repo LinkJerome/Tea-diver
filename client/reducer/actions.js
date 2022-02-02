@@ -18,8 +18,9 @@ export const updateTemperature = (temperature) => {
 
 export const UPDATE_PLOUF = 'redux/Update-Plouf';
 
-export const updatePlouf = () => {
+export const updatePlouf = (isPloufed) => {
   return {
     type: UPDATE_PLOUF,
+    payload: isPloufed,
   };
 };

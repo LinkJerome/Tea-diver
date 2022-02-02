@@ -30,8 +30,7 @@ export const LaunchButton = () => {
   const brewTime = useSelector(getBrewTime);
 
   const onClickPlouf = () => {
-    console.log('YOU CLICKED !');
-    dispatch(updatePlouf());
+    dispatch(updatePlouf(true));
   };
 
   return (

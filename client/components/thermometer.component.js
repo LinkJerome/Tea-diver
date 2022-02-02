@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import _ from 'lodash';
-import { io } from 'socket.io-client';
 import { ContentBlock, HalfItemBlock } from './subComponent/itemBlock.styled';
 import { Title2 } from './subComponent/title.styled';
 import { BigValueDisplay } from './subComponent/bidValueDisplay.styled';
 import { getTemperature } from '../reducer/selectors';
+import { io } from 'socket.io-client';
+import _ from 'lodash';
 import { updateTemperature } from '../reducer/actions';
 
 const socket = io();

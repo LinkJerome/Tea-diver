@@ -12,6 +12,7 @@ export const Launcher = () => {
 
   useEffect(() => {
     if (isPlouf) {
+      setTotalSeconds(brewTime * 60);
       const interval = setInterval(() => {
         setTotalSeconds((oldSeconds) => oldSeconds - 1);
       }, 1000);

@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
     case UPDATE_TEMP:
       return { ...state, currentTemperature: action.payload };
     case UPDATE_PLOUF:
-      return { ...state, isPlouf: !state.isPlouf };
+      return { ...state, isPlouf: action.payload };
     default:
       return state;
   }
