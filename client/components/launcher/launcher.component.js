@@ -14,7 +14,9 @@ export const Launcher = () => {
     if (isPlouf) {
       setTotalSeconds(brewTime * 60);
       const interval = setInterval(() => {
-        setTotalSeconds((oldSeconds) => oldSeconds - 1);
+        if (totalSeconds > 0) {
+          setTotalSeconds((oldSeconds) => oldSeconds - 1);
+        }
       }, 1000);
       return () => clearInterval(interval);
     }

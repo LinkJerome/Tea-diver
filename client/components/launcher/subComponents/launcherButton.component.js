@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { updatePlouf } from '../../../reducer/actions';
-import { getBrewTime } from '../../../reducer/selectors';
+import { getBrewTime, getIsGoodTemperature } from '../../../reducer/selectors';
 
 const BigButtonBlock = styled.button`
   display: flex;
@@ -28,13 +28,16 @@ const BigButtonBlock = styled.button`
 export const LaunchButton = () => {
   const dispatch = useDispatch();
   const brewTime = useSelector(getBrewTime);
+  const isGoodTemp = useSelector(getIsGoodTemperature);
 
   const onClickPlouf = () => {
     dispatch(updatePlouf(true));
   };
 
+  const isDisabled = (brewTime === 0) & isGoodTemp;
+
   return (
-    <BigButtonBlock disabled={brewTime === 0} onClick={onClickPlouf}>
+    <BigButtonBlock disabled={isDisabled} onClick={onClickPlouf}>
       LAUNCH
     </BigButtonBlock>
   );

@@ -8,6 +8,8 @@ export const middleware = () => (next) => (action) => {
     case UPDATE_PLOUF:
       if (action.payload) {
         socket.emit('plouf');
+      } else {
+        socket.emit('unplouf');
       }
       break;
     default:
