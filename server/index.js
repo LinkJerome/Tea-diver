@@ -3,6 +3,23 @@ const path = require('path');
 const http = require('http');
 const { Server } = require('socket.io');
 
+
+const convertToBinary = (number) => {
+  let num = number;
+  let binary = (num % 2).toString();
+  for (; num > 1; ) {
+      num = parseInt(num / 2);
+      binary =  (num % 2) + (binary);
+  }
+  return binary;
+}
+
+const intChelouToCelsius = (number) => {
+  const bin = Math.trunc(convertToBinary(number)/10000);
+  return parseInt(bin,2);
+}
+
+
 // Arduino
 const { Board, Thermometer } = require('johnny-five');
 const board = new Board({ port: 'COM4' });
@@ -26,33 +43,31 @@ board.on('ready', () => {
   console.log('Arduino Connected');
 
   let thermometer;
+  let temp; 
 
   setTimeout(() => {// Test Thermometer - DS18B20
-    thermometer = new Thermometer({
-      controller: 'DS18B20',
-      pin: 2,
-    });}, 1000);
+    thermometer = new Thermometer(
+      {
+        pin: 2
+      });
+  }, 1000);
 
+  setTimeout(() => {// Test Thermometer - DS18B20
+    thermometer.on('change', (therm) => {
+      temp = intChelouToCelsius(therm.celsius);
+      console.log('  celsius      : ', temp);
+      console.log('--------------------------------------');
+    });
+  }, 3000);
 
-  console.log('Thermometer Connected')
+  console.log('Thermometer Connected and Listening')
 
   io.on('connection', (socket) => {
     console.log('Client Connected');
 
-    board.loop(2000, () => {
+    board.loop(1000, () => {
       // Test Thermometre
-      console.log('Iteration')
-
-      thermometer.on('change', () => {
-        const { celsius, fahrenheit, kelvin } = thermometer;
-        console.log('  celsius      : ', celsius);
-        console.log('  fahrenheit   : ', fahrenheit);
-        console.log('  kelvin       : ', kelvin);
-        console.log('--------------------------------------');
-
-        socket.emit('thermos', { celsius, fahrenheit, kelvin });
-      });
-
+      socket.emit('thermos', { celsius: temp });
     });
 
     socket.on('plouf', () => {
