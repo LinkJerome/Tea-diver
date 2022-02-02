@@ -5,7 +5,7 @@ const { Server } = require('socket.io');
 const _ = require('lodash');
 
 // Arduino
-// const { Board, Led, Thermometer } = require('johnny-five');
+// const { Board, Thermometer, Servo } = require('johnny-five');
 // const board = new Board({ port: 'COM6' });
 
 const DIST_DIR = path.join(__dirname, '../dist');
@@ -30,8 +30,7 @@ io.on('connection', (socket) => {
 
   board.on('ready', () => {
     console.log('Arduino Connected');
-    // Test LED
-    const led = new Led(13);
+
     led.blink(500);
     // Test Thermometer - DS18B20
 
@@ -39,6 +38,8 @@ io.on('connection', (socket) => {
       controller: 'DS18B20',
       pin: 2, // Modify if needed
     });
+
+    const servo = new Servo(10);
 
 
     board.loop(2000, () => {
@@ -50,13 +51,18 @@ io.on('connection', (socket) => {
         console.log('  fahrenheit   : ', fahrenheit);
         console.log('  kelvin       : ', kelvin);
         console.log('--------------------------------------');
+
+        socket.emit('thermos', {celsius, fahrenheit, kelvin});
       });
 
-      socket.emit('thermos', {
-        // Temp rand values
-        celsius: _.random(70, 100),
-        fahrenheit: _.random(170, 215),
-        kelvin: _.random(342, 372),
+      socket.on('plouf', () => {
+        console.log('TODO Descendre le sachet de thé');
+        socket.on('shake', () => {
+          console.log('TODO shake your booty');
+        });
+        socket.on('unplouf', () => {
+          console.log('TODO Remonter le sachet de thé');
+        });
       });
     });
 
@@ -67,6 +73,7 @@ io.on('connection', (socket) => {
 
   */
 
+  // Test
   socket.on('plouf', () => {
     console.log('TODO Descendre le sachet de thé');
     socket.on('shake', () => {
