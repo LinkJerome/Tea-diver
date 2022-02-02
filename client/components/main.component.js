@@ -4,6 +4,7 @@ import { desktopQuery } from '../mixins/reponsive';
 import { ApiData } from './apiData.component';
 import { Thermometer } from './thermometer.component';
 import { Row } from './subComponent/row.styled';
+import { Launcher } from './launcher.component';
 
 const MainBlock = styled.div`
   display: flex;
@@ -29,7 +30,10 @@ export const Main = () => {
       <h1>Welcome to Tea-Diver</h1>
       <Row>
         <ApiData />
-        <Thermometer />
+        <div>
+          <Thermometer />
+          <Launcher />
+        </div>
       </Row>
     </MainBlock>
   );

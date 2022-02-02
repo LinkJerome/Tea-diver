@@ -5,13 +5,17 @@ export const ItemBlock = styled.div`
   justify-content: center;
   align-items: center;
 
-  min-height: 300px;
+  min-height: 350px;
   min-width: 300px;
 
   margin: 25px;
   padding: 10px;
   border-radius: 10px;
   background-color: ${(props) => props.theme.QUATERNARY};
+`;
+
+export const HalfItemBlock = styled(ItemBlock)`
+  min-height: 150px;
 `;
 
 export const ContentBlock = styled.div`

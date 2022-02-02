@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { io } from 'socket.io-client';
-import { ContentBlock, ItemBlock } from './subComponent/itemBlock.styled';
-import { Title2 } from './subComponent/title.styled';
 import _ from 'lodash';
+import { io } from 'socket.io-client';
+import { ContentBlock, HalfItemBlock } from './subComponent/itemBlock.styled';
+import { Title2 } from './subComponent/title.styled';
+import { BigValueDisplay } from './subComponent/bidValueDisplay.styled';
 
 const socket = io();
-
-const TemperatureBlock = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: xxx-large;
-
-  height: 100%;
-  width: 100%;
-`;
 
 export const Thermometer = () => {
   const [temperature, setTemperature] = useState(18);
@@ -26,11 +16,11 @@ export const Thermometer = () => {
   });
 
   return (
-    <ItemBlock>
+    <HalfItemBlock>
       <Title2>TEMPERATURE</Title2>
       <ContentBlock>
-        <TemperatureBlock>{temperature}°C</TemperatureBlock>
+        <BigValueDisplay>{temperature}°C</BigValueDisplay>
       </ContentBlock>
-    </ItemBlock>
+    </HalfItemBlock>
   );
 };
