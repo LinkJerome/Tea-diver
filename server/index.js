@@ -19,6 +19,8 @@ app.get('/', (req, res) => {
 const io = new Server(server);
 
 io.on('connection', (socket) => {
+  socket.emit('data', { foo: 'bar' });
+
   socket.on('disconnect', () => {
     // eslint-disable-next-line no-console
     console.log(`Client disconnected`);
