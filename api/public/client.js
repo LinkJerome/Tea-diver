@@ -1,5 +1,7 @@
 /* eslint-disable no-multi-str */
 
+const urlPrefix = "https://tea-diver-tiw8.herokuapp.com";
+
 $(document).ready(function () {
   $(".dropdown-menu a").on("click", function () {
     const selText = $(this).text();
@@ -28,7 +30,7 @@ $(document).ready(function () {
 });
 
 $.fn.getAll = function () {
-  $.getJSON("http://localhost:3000/tea", function (data) {
+  $.getJSON(`${urlPrefix}/tea`, function (data) {
     $("#display").append("<pre>" + JSON.stringify(data, null, 2) + "</pre>");
   });
 };
@@ -41,7 +43,7 @@ $.fn.getOne = function () {
 
   $("#oneTea").on("click", function () {
     $.getJSON(
-      "http://localhost:3000/tea/" + $("#getOne").val(),
+      `${urlPrefix}/tea/` + $("#getOne").val(),
       function (data) {
         $("#display").html(
           "<p>Here's your Tea!</p><pre>" +
@@ -62,7 +64,7 @@ $.fn.postOne = function () {
 
   $("#oneComment").on("click", function () {
     $.ajax({
-      url: "http://localhost:3000/tea/" + $("#postOne").val(),
+      url: `${urlPrefix}/tea/` + $("#postOne").val(),
       type: "post",
       contentType: "application/json; charset=utf-8",
       dataType: "json",
@@ -100,7 +102,7 @@ $.fn.postTea = function () {
     const form = document.getElementById("myForm");
     const fd = new FormData(form);
     $.ajax({
-      url: "http://localhost:3000/tea/",
+      url: `${urlPrefix}/tea/`,
       type: "post",
       data: fd,
       contentType: false,
@@ -110,7 +112,7 @@ $.fn.postTea = function () {
         Authorization:
           "Basic " +
           btoa(
-            unescape(
+            decodeURI(
               encodeURIComponent(
                 $("#user-name").val() + ":" + $("#password").val()
               )
@@ -140,13 +142,13 @@ $.fn.delAll = function () {
 
   $("#delAll").on("click", function () {
     $.ajax({
-      url: "http://localhost:3000/tea/",
+      url: `${urlPrefix}/tea/`,
       type: "delete",
       headers: {
         Authorization:
           "Basic " +
           btoa(
-            unescape(
+            decodeURI(
               encodeURIComponent(
                 $("#user-name").val() + ":" + $("#password").val()
               )
@@ -177,13 +179,13 @@ $.fn.delOne = function () {
 
   $("#delOneBtn").on("click", function () {
     $.ajax({
-      url: "http://localhost:3000/tea/" + $("#delOne").val(),
+      url: `${urlPrefix}/tea/` + $("#delOne").val(),
       type: "delete",
       headers: {
         Authorization:
           "Basic " +
           btoa(
-            unescape(
+            decodeURI(
               encodeURIComponent(
                 $("#user-name").val() + ":" + $("#password").val()
               )
