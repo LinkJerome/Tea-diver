@@ -112,7 +112,7 @@ $.fn.postTea = function () {
         Authorization:
           "Basic " +
           btoa(
-            decodeURI(
+            unescape(
               encodeURIComponent(
                 $("#user-name").val() + ":" + $("#password").val()
               )
@@ -148,7 +148,7 @@ $.fn.delAll = function () {
         Authorization:
           "Basic " +
           btoa(
-            decodeURI(
+            unescape(
               encodeURIComponent(
                 $("#user-name").val() + ":" + $("#password").val()
               )
@@ -185,7 +185,7 @@ $.fn.delOne = function () {
         Authorization:
           "Basic " +
           btoa(
-            decodeURI(
+            unescape(
               encodeURIComponent(
                 $("#user-name").val() + ":" + $("#password").val()
               )
