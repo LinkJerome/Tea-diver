@@ -29,26 +29,26 @@ board.on('ready', () => {
   let temp;
   let isUp = true;
 
-  const led = new Led(13);
+  const led = new Led.RGB([5, 3, 2]);
 
-  const servo = new Servo(10);
+  const servo = new Servo({
+    pin: 10,
+    startAt: 180,
+  });
 
   setTimeout(() => {// Test Thermometer - DS18B20
     thermometer = new Thermometer(
       {
         controller: "DS18B20",
-        pin: 2
+        pin: 8
       });
   }, 1000);
 
   setTimeout(() => {// Test Thermometer - DS18B20
     thermometer.on('change', (therm) => {
-      const { celsius, fahrenheit, kelvin } = thermometer;
+      const { celsius } = thermometer;
       temp = celsius;
-      console.log('  celsius      : ', celsius);
-      console.log('  fahrenheit   : ', fahrenheit);
-      console.log('  kelvin       : ', kelvin);
-      console.log('--------------------------------------');
+      console.log('Current Temperature      : ', celsius);
     });
   }, 3000);
 
@@ -61,30 +61,32 @@ board.on('ready', () => {
       socket.emit('thermos', { celsius: temp });
     });
 
+    led.on();
+    led.color("#FF0000");
+
     socket.on('plouf', () => {
-      led.off()
-      console.log('TODO Descendre le sachet de thé');
+      led.color("#FF0000");
+      servo.min();
+
       socket.on('shake', () => {
-        console.log('TODO shake your booty');
         if(isUp){
-          console.log('SHAKE MIN');
           servo.min();
           isUp = false;
         } else {
-          console.log('SHAKE MAX');
-          servo.max();
+          servo.to(45);
           isUp = true;
         }
       });
       socket.on('unplouf', () => {
-        console.log('TODO Remonter le sachet de thé');
+        led.color("#0000FF");
+        servo.max();
       });
     });
 
     socket.on('readyToPlouf', () => {
-      led.on()
+      led.color("#00FF00");
       socket.on('notReadyToPlouf', () => {
-        led.off()
+        led.color("#FF0000");
       });
     });
 

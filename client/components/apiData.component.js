@@ -15,10 +15,8 @@ export const ApiData = () => {
   const url = 'https://tea-diver-tiw8.herokuapp.com/tea';
 
   useEffect(() => {
-    fetch(url, {method: 'GET', mode: 'no-cors'})
-      .then((response) => {
-        return response.json();
-      })
+    fetch(url)
+      .then((response) => response.json())
       .then((data) => {
         setTeaData(data);
       });
