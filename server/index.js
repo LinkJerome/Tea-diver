@@ -4,7 +4,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 
 // Arduino
-const { Board, Thermometer, Led  } = require('johnny-five');
+const { Board, Thermometer, Led, Servo  } = require('johnny-five');
 const board = new Board({ port: 'COM7' });
 
 const DIST_DIR = path.join(__dirname, '../dist');
@@ -27,8 +27,11 @@ board.on('ready', () => {
 
   let thermometer;
   let temp;
+  let isUp = true;
 
   const led = new Led(13);
+
+  const servo = new Servo(10);
 
   setTimeout(() => {// Test Thermometer - DS18B20
     thermometer = new Thermometer(
@@ -63,6 +66,15 @@ board.on('ready', () => {
       console.log('TODO Descendre le sachet de thé');
       socket.on('shake', () => {
         console.log('TODO shake your booty');
+        if(isUp){
+          console.log('SHAKE MIN');
+          servo.min();
+          isUp = false;
+        } else {
+          console.log('SHAKE MAX');
+          servo.max();
+          isUp = true;
+        }
       });
       socket.on('unplouf', () => {
         console.log('TODO Remonter le sachet de thé');
