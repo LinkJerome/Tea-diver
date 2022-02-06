@@ -12,13 +12,14 @@ export const ApiData = () => {
   const selectedTea = useSelector(getSelectedTea);
 
   const [teaData, setTeaData] = useState({});
-  const url = 'https://tea-api-vic-lo.herokuapp.com/tea';
+  const url = 'https://tea-diver-tiw8.herokuapp.com/tea';
 
   useEffect(() => {
-    fetch(url)
-      .then((response) => response.json())
+    fetch(url, {method: 'GET', mode: 'no-cors'})
+      .then((response) => {
+        return response.json();
+      })
       .then((data) => {
-        // eslint-disable-next-line no-console
         setTeaData(data);
       });
   }, []);

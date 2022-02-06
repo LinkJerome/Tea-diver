@@ -1,5 +1,5 @@
 import { io } from 'socket.io-client';
-import { SHAKE_TEA, UPDATE_PLOUF, updateTemperature } from './reducer/actions';
+import { READY_TO_PLOUF, SHAKE_TEA, UPDATE_PLOUF, updateTemperature } from "./reducer/actions";
 import _ from 'lodash';
 import { store } from './store';
 
@@ -21,6 +21,13 @@ export const middleware = () => (next) => (action) => {
       break;
     case SHAKE_TEA:
       socket.emit('shake');
+      break;
+    case READY_TO_PLOUF:
+      if(action.payload) {
+        socket.emit('readyToPlouf');
+      } else {
+        socket.emit('notReadyToPlouf');
+      }
       break;
     default:
       break;
