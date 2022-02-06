@@ -22,13 +22,6 @@ export const middleware = () => (next) => (action) => {
     case SHAKE_TEA:
       socket.emit('shake');
       break;
-    case READY_TO_PLOUF:
-      if(action.payload) {
-        socket.emit('readyToPlouf');
-      } else {
-        socket.emit('notReadyToPlouf');
-      }
-      break;
     default:
       break;
   }

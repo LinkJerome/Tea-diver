@@ -62,7 +62,7 @@ board.on('ready', () => {
     });
 
     led.on();
-    led.color("#FF0000");
+    led.color("#0000FF");
 
     socket.on('plouf', () => {
       led.color("#FF0000");
@@ -78,15 +78,8 @@ board.on('ready', () => {
         }
       });
       socket.on('unplouf', () => {
-        led.color("#0000FF");
+        led.color("#00FF00");
         servo.max();
-      });
-    });
-
-    socket.on('readyToPlouf', () => {
-      led.color("#00FF00");
-      socket.on('notReadyToPlouf', () => {
-        led.color("#FF0000");
       });
     });
 

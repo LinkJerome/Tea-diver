@@ -35,10 +35,6 @@ export const LaunchButton = () => {
   const isGoodTemp = useSelector(getIsGoodTemperature);
   const isReadyToPlouf = isGoodTemp && brewTime !== 0;
 
-  useEffect(() => {
-    dispatch(readyToPlouf(isReadyToPlouf));
-  }, [isGoodTemp,brewTime])
-
   const onClickPlouf = () => {
     dispatch(updatePlouf(true));
   };
