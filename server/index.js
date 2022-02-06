@@ -66,20 +66,19 @@ board.on('ready', () => {
 
     socket.on('plouf', () => {
       led.color("#FF0000");
-      servo.min();
+      servo.min(1000);
 
       socket.on('shake', () => {
         if(isUp){
-          servo.min();
+          servo.min(900);
           isUp = false;
         } else {
-          servo.to(45);
+          servo.to(25, 900);
           isUp = true;
-        }
-      });
+      }});
       socket.on('unplouf', () => {
         led.color("#00FF00");
-        servo.max();
+        servo.to(180, 2000);
       });
     });
 
