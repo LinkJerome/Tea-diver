@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { updatePlouf } from '../../../reducer/actions';
+import { readyToPlouf, updatePlouf } from "../../../reducer/actions";
 import { getBrewTime, getIsGoodTemperature } from '../../../reducer/selectors';
 
 const BigButtonBlock = styled.button`
@@ -33,13 +33,18 @@ export const LaunchButton = () => {
   const dispatch = useDispatch();
   const brewTime = useSelector(getBrewTime);
   const isGoodTemp = useSelector(getIsGoodTemperature);
+  const isReadyToPlouf = isGoodTemp && brewTime !== 0;
+
+  useEffect(() => {
+    dispatch(readyToPlouf(isReadyToPlouf));
+  }, [isGoodTemp,brewTime])
 
   const onClickPlouf = () => {
     dispatch(updatePlouf(true));
   };
 
   return (
-    <BigButtonBlock disabled={!isGoodTemp || brewTime === 0} onClick={onClickPlouf}>
+    <BigButtonBlock disabled={!isReadyToPlouf} onClick={onClickPlouf}>
       LAUNCH
     </BigButtonBlock>
   );

@@ -12,7 +12,7 @@ export const Thermometer = () => {
     <HalfItemBlock>
       <Title2>TEMPERATURE</Title2>
       <ContentBlock>
-        <BigValueDisplay>{temperature}°C</BigValueDisplay>
+        <BigValueDisplay>{Math.trunc(temperature)}°C</BigValueDisplay>
       </ContentBlock>
     </HalfItemBlock>
   );

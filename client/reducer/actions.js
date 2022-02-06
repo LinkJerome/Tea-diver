@@ -32,3 +32,13 @@ export const shakeTea = () => {
     type: SHAKE_TEA,
   };
 };
+
+export const READY_TO_PLOUF = 'redux/Ready';
+
+export const readyToPlouf = (isReadyToPlouf) => {
+  return {
+    type: READY_TO_PLOUF,
+    payload: isReadyToPlouf
+  };
+};
+
