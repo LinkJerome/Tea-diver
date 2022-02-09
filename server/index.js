@@ -4,8 +4,8 @@ const http = require('http');
 const { Server } = require('socket.io');
 
 // Arduino
-const { Board, Thermometer } = require('johnny-five');
-const board = new Board({ port: 'COM4' });
+const { Board, Thermometer, Led, Servo  } = require('johnny-five');
+const board = new Board({ port: 'COM7' });
 
 const DIST_DIR = path.join(__dirname, '../dist');
 const HTML_FILE = path.join(DIST_DIR, 'index.html');
@@ -26,42 +26,59 @@ board.on('ready', () => {
   console.log('Arduino Connected');
 
   let thermometer;
+  let temp;
+  let isUp = true;
+
+  const led = new Led.RGB([5, 3, 2]);
+
+  const servo = new Servo({
+    pin: 10,
+    startAt: 180,
+  });
 
   setTimeout(() => {// Test Thermometer - DS18B20
-    thermometer = new Thermometer({
-      controller: 'DS18B20',
-      pin: 2,
-    });}, 1000);
+    thermometer = new Thermometer(
+      {
+        controller: "DS18B20",
+        pin: 8
+      });
+  }, 1000);
 
+  setTimeout(() => {// Test Thermometer - DS18B20
+    thermometer.on('change', (therm) => {
+      const { celsius } = thermometer;
+      temp = celsius;
+      console.log('Current Temperature      : ', celsius);
+    });
+  }, 3000);
 
-  console.log('Thermometer Connected')
+  console.log('Thermometer Connected and Listening')
 
   io.on('connection', (socket) => {
     console.log('Client Connected');
 
-    board.loop(2000, () => {
-      // Test Thermometre
-      console.log('Iteration')
-
-      thermometer.on('change', () => {
-        const { celsius, fahrenheit, kelvin } = thermometer;
-        console.log('  celsius      : ', celsius);
-        console.log('  fahrenheit   : ', fahrenheit);
-        console.log('  kelvin       : ', kelvin);
-        console.log('--------------------------------------');
-
-        socket.emit('thermos', { celsius, fahrenheit, kelvin });
-      });
-
+    board.loop(500, () => {
+      socket.emit('thermos', { celsius: temp });
     });
 
+    led.on();
+    led.color("#0000FF");
+
     socket.on('plouf', () => {
-      console.log('TODO Descendre le sachet de thé');
+      led.color("#FF0000");
+      servo.min(1000);
+
       socket.on('shake', () => {
-        console.log('TODO shake your booty');
-      });
+        if(isUp){
+          servo.min(900);
+          isUp = false;
+        } else {
+          servo.to(25, 900);
+          isUp = true;
+      }});
       socket.on('unplouf', () => {
-        console.log('TODO Remonter le sachet de thé');
+        led.color("#00FF00");
+        servo.to(180, 2000);
       });
     });
 

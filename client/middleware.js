@@ -1,12 +1,11 @@
 import { io } from 'socket.io-client';
-import { SHAKE_TEA, UPDATE_PLOUF, updateTemperature } from './reducer/actions';
+import { READY_TO_PLOUF, SHAKE_TEA, UPDATE_PLOUF, updateTemperature } from "./reducer/actions";
 import _ from 'lodash';
 import { store } from './store';
 
 const socket = io();
 
 socket.on('thermos', (data) => {
-  console.log('I received thermos')
   const celsius = _.get(data, 'celsius', 0);
   store.dispatch(updateTemperature(celsius));
 });
