@@ -20,8 +20,8 @@ l'infusion, mais aussi pour secouer le sachet pendant l'infusion pour qu'elle so
 
 - Arduino
 - Breadboard
-- Moteur rotatif Servo SM-S2039S (rotatif précis)
-- Thermomètre waterproof DS18B20 (allant de -40° à 125°C)
+- Moteur rotatif Servo SM-S2039S
+- Thermomètre waterproof DS18B20
 - LED RGB
 - Fil
 
@@ -30,6 +30,15 @@ l'infusion, mais aussi pour secouer le sachet pendant l'infusion pour qu'elle so
 - API externe forkée de : https://github.com/victoria-lo/TAPI
 - Serveur : Lancement de l'application, écoute de l'arduino => Express, Johnny-Five. 
 - Interface web : Choix du thé, affichage température, lancement de la préparation du thé => SPA React simple
+
+### Besoins
+Permets de gérer l'infusion d'un thé :
+- Un moteur permet de plonger le thé dans l'eau chaude, le retirer et le secouer pendant l'infusion
+- Un capteur permet de mesurer la température de l'eau pour s'assurer d'une infusion en conditions optimale
+
+### Contraintes
+- Nécessite un tiers pour faire chauffer l'eau
+- Nécessite un tiers pour accrocher le sachet de thé et l'enlever une fois le processus terminé
 
 ## Lancement du projet
 
