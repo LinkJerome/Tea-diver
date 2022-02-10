@@ -23,62 +23,68 @@ l'infusion, mais aussi pour secouer le sachet pendant l'infusion pour qu'elle so
 - Moteur rotatif Servo SM-S2039S
 - Thermomètre waterproof DS18B20
 - LED RGB
-- Fil
+- Fils
 
 ### Côté logiciel
 
-- API externe forkée de : https://github.com/victoria-lo/TAPI
+- API externe forkée de [ce projet](https://github.com/victoria-lo/TAPI), déployée sur [Heroku](https://tea-diver-tiw8.herokuapp.com), base de données sur MongoDB Atlas pour récupérer les informations sur les thés.
 - Serveur : Lancement de l'application, écoute de l'arduino => Express, Johnny-Five. 
 - Interface web : Choix du thé, affichage température, lancement de la préparation du thé => SPA React simple
 
 ### Besoins
-Permets de gérer l'infusion d'un thé :
-- Un moteur permet de plonger le thé dans l'eau chaude, le retirer et le secouer pendant l'infusion
-- Un capteur permet de mesurer la température de l'eau pour s'assurer d'une infusion en conditions optimale
+
+Permet de gérer l'infusion d'un thé.
+- Un moteur doit plonger le sachet thé dans l'eau chaude, le retirer et le secouer pendant l'infusion.
+- Un capteur doit mesurer la température de l'eau pour s'assurer d'une infusion en conditions optimales.
 
 ### Contraintes
-- Nécessite un tiers pour faire chauffer l'eau
-- Nécessite un tiers pour accrocher le sachet de thé et l'enlever une fois le processus terminé
+
+- L'utilisation d'eau implique d'utiliser des composants waterproof et de protéger ceux qui ne peuvent pas l'être
+- L'eau étant chaude, il faut faire en sorte que l'eau n'éclabousse pas quand on remue le sachet.
+- Le bras du moteur est court, il faut pourtant qu'il ait assez d'amplitude pour que le sachet puisse remonter suffisamment et arrêter l'infusion.
 
 ## Lancement du projet
 
 Installation des dépendances :
-```
+
+```sh
 yarn install
-ou
+# ou
 npm install
 ```
 
 Build le projet :
-```
+
+```sh
 yarn build
-ou
+# ou
 npm run build
 ```
 
 Lancement du serveur :
-```
+
+```sh
 yarn start
-ou
+# ou
 npm run start
 ```
-Accéder à l'application à [cette adresse](http://localhost:3000/)
+
+Accéder à l'application à [cette adresse en local](http://localhost:3000/)
 
 ## Fonctionnement : Tea Diver
 
 Commencer par démarrer le serveur et accéder à l'application.
 
-Une fois que vous pouvez accéder à l'application, vous pouvez mettre votre contenant d'eau chaude, accrocher vôtre thé 
-et selectionner le thé qui correspond au vôtre dans l'application (peu importe l'ordre).
+Une fois que vous pouvez accéder à l'application, vous pouvez mettre votre tasse ou autre contenant rempli d'eau chaude,  accrocher vôtre thé, et selectionner le thé qui correspond au vôtre dans l'interface (peu importe l'ordre).
 
-Le bouton de lancement ne sera pas actionnable temps que vous n'aurez pas respecté les conditions suivantes :
+Le bouton de lancement ne sera pas actionnable tant que vous n'aurez pas respecté les conditions suivantes :
 - Avoir sélectionné un thé
-- Avoir une eau avec une température aux environs de celle conseillé pour le thé selectionné
+- Avoir une eau avec une température aux environs de celle conseillé par l'API.
 
-Une fois les conditions respectées, le bouton de lancement est actionnable, vous pourrez alors déclencher l'infusion.
+Une fois les conditions respectées, le bouton de lancement est activé, vous pourrez alors déclencher l'infusion.
 
-Une fois l'infusion déclenchée, la led s'allumera en rouge qui indiquera que le processus est en cours.
-Le thé sera alors plongé dans l'eau et secoué régulièrement.
+Une fois l'infusion déclenchée, la LED s'allume en rouge, elle indique que le processus d'infusion est en cours.
+Le sachet de thé est alors plongé dans l'eau et secoué régulièrement.
 
-Une fois le temps d'infusion écouler, le sachet sera remonté, la led passera au vert et vous pourrez récupérer
+Une fois le temps d'infusion écoulé, le sachet est remonté, la LED passe au vert et vous pourrez récupérer
 votre thé.
