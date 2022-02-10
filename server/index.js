@@ -5,7 +5,7 @@ const { Server } = require('socket.io');
 
 // Arduino
 const { Board, Thermometer, Led, Servo  } = require('johnny-five');
-const board = new Board({ port: 'COM7' });
+const board = new Board({ port: 'COM6' });
 
 const DIST_DIR = path.join(__dirname, '../dist');
 const HTML_FILE = path.join(DIST_DIR, 'index.html');
@@ -66,14 +66,14 @@ board.on('ready', () => {
 
     socket.on('plouf', () => {
       led.color("#FF0000");
-      servo.min(1000);
+      servo.to(90,1000);
 
       socket.on('shake', () => {
         if(isUp){
-          servo.min(900);
+          servo.to(90,900);
           isUp = false;
         } else {
-          servo.to(25, 900);
+          servo.to(50, 900);
           isUp = true;
       }});
       socket.on('unplouf', () => {

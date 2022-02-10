@@ -1,5 +1,5 @@
 import { io } from 'socket.io-client';
-import { READY_TO_PLOUF, SHAKE_TEA, UPDATE_PLOUF, updateTemperature } from "./reducer/actions";
+import { SHAKE_TEA, UPDATE_PLOUF, updateTemperature } from "./reducer/actions";
 import _ from 'lodash';
 import { store } from './store';
 
