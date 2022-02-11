@@ -92,3 +92,7 @@ votre thé.
 ## Montage Board
 
 ![](images/board.PNG)
+
+## Architecture
+
+![](images/Archi.PNG)
