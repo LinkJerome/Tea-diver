@@ -88,3 +88,7 @@ Le sachet de thé est alors plongé dans l'eau et secoué régulièrement.
 
 Une fois le temps d'infusion écoulé, le sachet est remonté, la LED passe au vert et vous pourrez récupérer
 votre thé.
+
+## Montage Board
+
+![](images/board.PNG)
