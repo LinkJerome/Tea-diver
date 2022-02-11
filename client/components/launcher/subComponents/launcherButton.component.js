@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { readyToPlouf, updatePlouf } from "../../../reducer/actions";
+import { updatePlouf } from "../../../reducer/actions";
 import { getBrewTime, getIsGoodTemperature } from '../../../reducer/selectors';
 
 const BigButtonBlock = styled.button`
