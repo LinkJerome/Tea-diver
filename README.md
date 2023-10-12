@@ -1,7 +1,7 @@
 # TIW8 - IOT : Projet Tea-diver
 
 Groupe :
-- GIL Jérôme => 11608911
+- PUGET GIL Jey => 11608911
 - ICMEN Malik => 11704010
 - TRÉMÉ Guillaume => 11507711
 - VIGLIANO Léa => 11517348
